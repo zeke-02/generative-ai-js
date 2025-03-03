@@ -16,7 +16,6 @@
  */
 
 import { exec } from "child_process";
-import { doLicense } from "./license";
 import { getFormatPatternsString } from "./format-patterns";
 
 async function runFormat(): Promise<void> {
@@ -35,7 +34,6 @@ async function runFormat(): Promise<void> {
   });
   try {
     await prettierPromise;
-    await doLicense(true);
   } catch (e) {
     console.error(e);
     process.exit(1);

@@ -41,7 +41,7 @@
     "api-report": "api-extractor run -c api-extractor.json --local --verbose && api-extractor run -c api-extractor.server.json --local --verbose",
     "docs": "npm run build && npx api-documenter markdown -i ./temp/main -o ./docs/reference/main && npx api-documenter markdown -i ./temp/server -o ./docs/reference/server",
     "format": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"nodenext\"}' npx ts-node scripts/run-format.ts",
-    "format:check": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"nodenext\"}' npx ts-node scripts/check-format.ts"
+    "format:check": "TS_NODE_COMPILER_OPTIONS='{\"module\" :\"nodenext\"}' npx ts-node scripts/check-format.ts"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
@@ -88,5 +88,8 @@
   "bugs": {
     "url": "https://github.com/google/generative-ai-js/issues"
   },
-  "homepage": "https://github.com/google/generative-ai-js#readme"
+  "homepage": "https://github.com/google/generative-ai-js#readme",
+  "dependencies": {
+    "@tauri-apps/plugin-fs": "^2.2.0"
+  }
 }

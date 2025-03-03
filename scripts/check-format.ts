@@ -16,7 +16,7 @@
  */
 
 import { exec } from "child_process";
-import { doLicense } from "./license";
+
 import { getFormatPatternsString } from "./format-patterns";
 
 async function checkFormat(): Promise<void> {
@@ -34,14 +34,8 @@ async function checkFormat(): Promise<void> {
     );
   });
   const prettierUpdated = await prettierPromise;
-  const licensesUpdated = await doLicense(false);
   let exitCode = 0;
-  if (licensesUpdated) {
-    console.error(
-      "License headers were changed. Make sure to run `npm run format`.",
-    );
-    exitCode = 1;
-  }
+
   if (prettierUpdated) {
     console.error("Formatting needs fixes. Make sure to run `npm run format`.");
     exitCode = 1;

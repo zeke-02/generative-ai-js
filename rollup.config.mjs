@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-import replace from "rollup-plugin-replace";
-import typescriptPlugin from "rollup-plugin-typescript2";
-import typescript from "typescript";
 import json from "@rollup/plugin-json";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { fileURLToPath } from "node:url";
+import replace from "rollup-plugin-replace";
+import typescriptPlugin from "rollup-plugin-typescript2";
+import typescript from "typescript";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -58,7 +58,7 @@ const esmBuilds = [
       format: "es",
       sourcemap: true,
     },
-    external: ["fs"],
+    external: [],
     plugins: [...es2017BuildPlugins],
   },
 ];
@@ -67,7 +67,7 @@ const cjsBuilds = [
   {
     input: "src/index.ts",
     output: [{ file: pkg.main, format: "cjs", sourcemap: true }],
-    external: ["fs"],
+    external: [],
     plugins: [...es2017BuildPlugins],
   },
 ];
@@ -78,7 +78,7 @@ const serverBuilds = [
     output: [
       { file: pkg.exports["./server"].import, format: "es", sourcemap: true },
     ],
-    external: ["fs"],
+    external: [],
     plugins: [...es2017BuildPlugins],
   },
   {
@@ -86,7 +86,7 @@ const serverBuilds = [
     output: [
       { file: pkg.exports["./server"].require, format: "cjs", sourcemap: true },
     ],
-    external: ["fs"],
+    external: [],
     plugins: [...es2017BuildPlugins],
   },
 ];

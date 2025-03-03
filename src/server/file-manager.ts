@@ -15,9 +15,8 @@
  * limitations under the License.
  */
 
+import { readFile } from "@tauri-apps/plugin-fs";
 import { RequestOptions, SingleRequestOptions } from "../../types";
-import { readFileSync } from "fs";
-import { FilesRequestUrl, getHeaders, makeServerRequest } from "./request";
 import {
   FileMetadata,
   FileMetadataResponse,
@@ -25,11 +24,12 @@ import {
   ListParams,
   UploadFileResponse,
 } from "../../types/server";
-import { RpcTask } from "./constants";
 import {
   GoogleGenerativeAIError,
   GoogleGenerativeAIRequestInputError,
 } from "../errors";
+import { RpcTask } from "./constants";
+import { FilesRequestUrl, getHeaders, makeServerRequest } from "./request";
 
 // Internal type, metadata sent in the upload
 export interface UploadMetadata {
@@ -54,7 +54,7 @@ export class GoogleAIFileManager {
     filePath: string,
     fileMetadata: FileMetadata,
   ): Promise<UploadFileResponse> {
-    const file = readFileSync(filePath);
+    const file = await readFile(filePath);
     const url = new FilesRequestUrl(
       RpcTask.UPLOAD,
       this.apiKey,
